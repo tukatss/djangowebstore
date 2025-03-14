@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Bookstore{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <h1>Bookstore</h1>
+        <nav>
+            {% if user.is_authenticated %}
+                <p>You logged in as {{ user.username }}</p>
+                <a href="{% url 'book_new' %}">Add book</a>
+                <a href="{% url 'logout' %}">Log out</a>
+            {% else %}
+                <a href="{% url 'login' %}">Log in</a>
+                <a href="{% url 'register' %}">Sign in</a>
+            {% endif %}
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>
